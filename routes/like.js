@@ -1,8 +1,10 @@
 import express from 'express'
-import {} from '../controller/like.js'
+import { getLike, addLike, deleteLike } from '../controller/like.js'
 
 const router = express.Router()
 
-// router.get()
+router.get("/", getLike)
+router.post("/", addLike)
+router.delete("/", deleteLike)
 
 export default router

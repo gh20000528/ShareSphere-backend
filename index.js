@@ -40,7 +40,7 @@ app.use("/api/auth", authRoutes)
 app.use("/api/users", userRoutes)
 app.use("/api/post", postRoutes)
 app.use("/api/comment", commentRoutes)
-app.use("/api/like", likeRoutes)
+app.use("/api/likes", likeRoutes)
 
 app.listen(8800 , ()=>{
     console.log("api working");
