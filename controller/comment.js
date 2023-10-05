@@ -11,6 +11,7 @@ export const getComment = (req, res) => {
     })
 }
 
+
 export const addComment = (req, res) => {
     const token = req.cookies.accessToken
     if(!token) return res.stats(401).json("not logged in")
