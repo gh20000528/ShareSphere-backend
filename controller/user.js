@@ -11,3 +11,27 @@ export const getUser = (req, res) => {
         return res.json(info)
     }) 
 }
+
+
+export const updateUser = (req, res) => {
+    const token = req.cookies.accessToken
+    if(!token) return res.status(401).json("not logged in")
+    
+    jwt.verify(token, "secretkey", (err, userInfo) => {
+        if (err) return res.status(403).json("Token is not valid")
+
+        const q = "UPDATE users SET `name` = ?, `city` = ?, `covoerPic` = ?, `profilePic` = ? WHERE id = ? "
+
+        db.query(q, [
+            req.body.name,
+            req.body.city,
+            req.body.coverPic,
+            req.body.profilePic,
+            userInfo.id
+        ], (err, data) => {
+            if(err) return console.log(err);
+            if(data.affectedRows > 0) return res.json("updated")
+            return res.status(403).json("You can update only your post!")
+        })
+    })
+}
